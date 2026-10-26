@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gulshan Rana | Web & Android App Developer</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              cyan: '#06b6d4',
+              violet: '#8b5cf6',
+              emerald: '#10b981',
+              dark: '#0b0f19',
+              darker: '#06080e',
+              card: 'rgba(17, 24, 39, 0.75)',
+            }
+          },
+          animation: {
+            'float-slow': 'float 6s ease-in-out infinite',
+            'float-reverse': 'floatRev 7s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-14px)' },
+            },
+            floatRev: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(14px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.8' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom glassmorphism & glow styles */
+    .glass-card {
+      background: rgba(17, 24, 39, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    .glass-nav {
+      background: rgba(11, 15, 25, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .btn-gradient {
+      background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-gradient:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #4f46e5 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.45);
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-slate-200 font-sans antialiased selection:bg-brand-violet selection:text-white relative overflow-x-hidden">
+
+  <!-- Ambient Light Gradients Background -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-cyan/20 rounded-full blur-[120px] animate-pulse-glow"></div>
+    <div class="absolute top-1/3 -right-32 w-[30rem] h-[30rem] bg-brand-violet/20 rounded-full blur-[140px] animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+    <div class="absolute bottom-10 left-1/4 w-[28rem] h-[28rem] bg-brand-emerald/15 rounded-full blur-[130px]"></div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center font-display font-extrabold text-white text-lg shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          GR
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-cyan-400 transition-colors">Gulshan Rana</span>
+          <span class="text-xs text-slate-400 tracking-wider">Web & Mobile Engineer</span>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">About</a>
+        <a href="#services" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Services</a>
+        <a href="#skills" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Skills</a>
+        <a href="#projects" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Projects</a>
+        <a href="#contact" class="btn-gradient text-white text-sm font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2">
+          <span>Let's Talk</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button id="mobileMenuBtn" aria-label="Toggle navigation menu" class="md:hidden text-slate-300 hover:text-white p-2 text-2xl focus:outline-none">
+        <i class="fa-solid fa-bars" id="menuIcon"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden glass-nav border-t border-slate-800/80 px-6 py-6 space-y-4">
+      <a href="#home" class="mobile-link block text-base font-medium text-slate-200 hover:text-cyan-400">Home</a>
+      <a href="#about" class="mobile-link block text-base font-medium text-slate-200 hover:text-cyan-400">About</a>
+      <a href="#services" class="mobile-link block text-base font-medium text-slate-200 hover:text-cyan-400">Services</a>
+      <a href="#skills" class="mobile-link block text-base font-medium text-slate-200 hover:text-cyan-400">Skills</a>
+      <a href="#projects" class="mobile-link block text-base font-medium text-slate-200 hover:text-cyan-400">Projects</a>
+      <a href="#contact" class="mobile-link block text-base font-medium text-cyan-400">Contact & Hire</a>
+      <div class="pt-2 border-t border-slate-800 flex items-center gap-4 text-slate-400">
+        <a href="tel:+918295573062" class="hover:text-cyan-400"><i class="fa-solid fa-phone"></i> Call</a>
+        <a href="mailto:gulshanr7@gmail.com" class="hover:text-cyan-400"><i class="fa-solid fa-envelope"></i> Email</a>
+        <a href="https://wa.me/918295573062" target="_blank" class="hover:text-emerald-400"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-24">
+    <!-- Hero Section -->
+    <section id="home" class="min-h-[calc(100vh-6rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16">
+      <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs sm:text-sm font-medium tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            Available for Freelance & Full-Time Projects
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+            Crafting High-Impact <br />
+            <span class="text-gradient">Websites & Android Apps</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Hi, I'm <strong class="text-slate-200">Gulshan Rana</strong>. A passionate Full-Stack Website Developer and Native/Cross-Platform Android App Engineer dedicated to turning complex concepts into robust, intuitive, and conversion-ready digital solutions.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+            <a href="#contact" class="btn-gradient text-white px-7 py-3.5 rounded-xl font-semibold shadow-lg flex items-center gap-3 text-base">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Get in Touch</span>
+            </a>
+            <a href="#services" class="glass-card hover:border-slate-600 text-slate-200 px-7 py-3.5 rounded-xl font-semibold transition-all hover:bg-slate-800/80 flex items-center gap-3 text-base">
+              <span>View Services</span>
+              <i class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
+            </a>
+          </div>
+
+          <!-- Quick Contacts in Hero -->
+          <div class="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-slate-400 border-t border-slate-800/60 mt-8">
+            <a href="tel:+918295573062" class="flex items-center gap-2 hover:text-cyan-400 transition-colors">
+              <i class="fa-solid fa-phone text-cyan-500"></i>
+              <span>+91 8295573062</span>
+            </a>
+            <span class="text-slate-700 hidden sm:inline">•</span>
+            <a href="mailto:gulshanr7@gmail.com" class="flex items-center gap-2 hover:text-cyan-400 transition-colors">
+              <i class="fa-solid fa-envelope text-indigo-400"></i>
+              <span>gulshanr7@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Visual Interactive Card -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <!-- Floating badge: Web -->
+          <div class="absolute -top-6 -left-4 sm:left-4 glass-card px-4 py-2.5 rounded-2xl flex items-center gap-3 border border-cyan-500/30 animate-float-slow z-20">
+            <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-sm">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 leading-tight">Web Engineering</p>
+              <p class="text-xs font-bold text-white">Full-Stack & React</p>
+            </div>
+          </div>
+
+          <!-- Floating badge: Android -->
+          <div class="absolute -bottom-6 -right-2 sm:right-4 glass-card px-4 py-2.5 rounded-2xl flex items-center gap-3 border border-emerald-500/30 animate-float-reverse z-20">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm">
+              <i class="fa-brands fa-android"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 leading-tight">Mobile Development</p>
+              <p class="text-xs font-bold text-white">Kotlin & Java Native</p>
+            </div>
+          </div>
+
+          <!-- Main Interactive Card -->
+          <div class="glass-card rounded-3xl p-6 sm:p-8 w-full max-w-md border border-slate-700/60 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-6 border-b border-slate-800">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-xl font-extrabold text-white">
+                  GR
+                </div>
+                <div>
+                  <h3 class="font-bold text-white leading-tight">Gulshan Rana</h3>
+                  <p class="text-xs text-cyan-400 font-medium">Software Engineer</p>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/60 text-emerald-400 text-xs border border-emerald-500/30">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Verified
+              </span>
+            </div>
+
+            <!-- Terminal-like mini preview -->
+            <div class="mt-6 bg-slate-950/90 rounded-2xl p-4 font-mono text-xs border border-slate-800/80 space-y-2">
+              <div class="flex items-center gap-2 pb-2 border-b border-slate-800">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <span class="text-slate-500 text-[10px] ml-auto">portfolio.config.js</span>
+              </div>
+              <p class="text-cyan-400">$ developer.getInfo()</p>
+              <p class="text-slate-400"><span class="text-purple-400">const</span> developer = {</p>
+              <p class="text-slate-300 pl-4">name: <span class="text-emerald-400">'Gulshan Rana'</span>,</p>
+              <p class="text-slate-300 pl-4">focus: [<span class="text-emerald-400">'Web Dev'</span>, <span class="text-emerald-400">'Android Apps'</span>],</p>
+              <p class="text-slate-300 pl-4">status: <span class="text-amber-400">'Ready for Impact'</span></p>
+              <p class="text-slate-400">};</p>
+            </div>
+
+            <!-- Quick Action Links -->
+            <div class="grid grid-cols-2 gap-3 mt-6">
+              <a href="https://wa.me/918295573062" target="_blank" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-600/30 transition text-xs font-semibold">
+                <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+              </a>
+              <a href="tel:+918295573062" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-cyan-600/20 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-600/30 transition text-xs font-semibold">
+                <i class="fa-solid fa-phone text-xs"></i> Quick Call
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics & Stats Counter Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <div class="glass-card p-6 rounded-2xl text-center border-slate-800 hover:border-cyan-500/40 transition">
+          <p class="text-3xl sm:text-4xl font-extrabold text-cyan-400 font-display">40+</p>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">Projects Delivered</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl text-center border-slate-800 hover:border-indigo-500/40 transition">
+          <p class="text-3xl sm:text-4xl font-extrabold text-indigo-400 font-display">99%</p>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">Client Satisfaction</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl text-center border-slate-800 hover:border-emerald-500/40 transition">
+          <p class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-display">100k+</p>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">App Interactions</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl text-center border-slate-800 hover:border-amber-500/40 transition">
+          <p class="text-3xl sm:text-4xl font-extrabold text-amber-400 font-display">24/7</p>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">Technical Support</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Bio Image / Presentation Card -->
+        <div class="lg:col-span-5 order-2 lg:order-1">
+          <div class="glass-card p-6 rounded-3xl border-slate-800 relative">
+            <div class="w-full h-80 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 flex flex-col items-center justify-center border border-slate-800 relative overflow-hidden group">
+              <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-cyan-500 via-indigo-600 to-fuchsia-600 p-1 flex items-center justify-center shadow-xl">
+                <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-4xl text-cyan-400 font-display font-extrabold">
+                  GR
+                </div>
+              </div>
+              <h3 class="text-lg font-bold text-white mt-4">Gulshan Rana</h3>
+              <p class="text-xs text-slate-400">Software Developer & Tech Creator</p>
+              <div class="flex items-center gap-3 mt-4 text-slate-400 text-sm">
+                <span class="inline-flex items-center gap-1 bg-slate-800/80 px-3 py-1 rounded-full text-xs text-cyan-300">
+                  <i class="fa-solid fa-location-dot"></i> India
+                </span>
+                <span class="inline-flex items-center gap-1 bg-slate-800/80 px-3 py-1 rounded-full text-xs text-emerald-300">
+                  <i class="fa-solid fa-shield-check"></i> Available Globally
+                </span>
+              </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-slate-800 text-center">
+              <p class="text-xs text-slate-400 italic">"Building smooth user experiences backed by clean, maintainable architecture."</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio Content -->
+        <div class="lg:col-span-7 space-y-6 order-1 lg:order-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-500/10 text-indigo-400 text-xs font-semibold tracking-wider uppercase">
+            About Gulshan Rana
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+            Transforming Complex Ideas into Elegant <span class="text-gradient">Digital Realities</span>
+          </h2>
+          <p class="text-slate-300 text-base leading-relaxed">
+            I am a results-oriented software developer specializing in building modern web applications and performant Android applications. My work bridges the gap between sleek, responsive user interfaces and strong backend workflows.
+          </p>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+            Whether launching an enterprise business website, architecting an e-commerce platform, or deploying an offline-first Android mobile app with seamless REST API sync, I prioritize high performance, search engine optimization (SEO), and clean code standards.
+          </p>
+
+          <!-- Core Pillars -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 flex items-start gap-3">
+              <div class="text-cyan-400 text-lg mt-0.5"><i class="fa-solid fa-bolt"></i></div>
+              <div>
+                <h4 class="text-sm font-semibold text-white">Lightning Fast & Responsive</h4>
+                <p class="text-xs text-slate-400 mt-1">Cross-browser & cross-device layouts that load in milliseconds.</p>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 flex items-start gap-3">
+              <div class="text-emerald-400 text-lg mt-0.5"><i class="fa-brands fa-google-play"></i></div>
+              <div>
+                <h4 class="text-sm font-semibold text-white">Play Store Production-Ready</h4>
+                <p class="text-xs text-slate-400 mt-1">Robust mobile builds with intuitive UX and reliable crash monitoring.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a href="#contact" class="inline-flex items-center gap-2 text-cyan-400 font-semibold text-sm hover:text-cyan-300 transition-colors">
+              <span>Have an idea? Let's discuss your requirements</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-semibold tracking-wider uppercase">
+          What I Offer
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Tailored Services for <span class="text-gradient">Growth & Scale</span>
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          End-to-end engineering solutions built with modern technology stacks, guaranteed delivery, and continuous support.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Service 1: Website Development -->
+        <div class="glass-card p-8 rounded-3xl border-slate-800 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 group">
+          <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center text-2xl mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Website Development</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            Custom, responsive web development built for speed, conversion, and fluid interactions across desktop, tablets, and phones.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300 mb-6">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Modern Single Page Apps (SPA) & Portfolios</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Full-Stack Web Applications (React, Node)</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> SEO Optimization & High PageSpeed Scores</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> GitHub Pages, Vercel & Cloud Deployments</li>
+          </ul>
+          <a href="#contact" class="text-cyan-400 font-semibold text-xs inline-flex items-center gap-2 hover:gap-3 transition-all">
+            Build My Website <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Service 2: Android App Development -->
+        <div class="glass-card p-8 rounded-3xl border-slate-800 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 group">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+            <i class="fa-brands fa-android"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Android App Development</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            Native and modern hybrid Android applications designed for responsiveness, smooth gestures, and optimal battery efficiency.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300 mb-6">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Kotlin / Java Android Studio Development</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Material Design UI / UX System Implementation</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Google Play Store Publishing & Guidelines</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Push Notifications, Offline Storage & Room DB</li>
+          </ul>
+          <a href="#contact" class="text-emerald-400 font-semibold text-xs inline-flex items-center gap-2 hover:gap-3 transition-all">
+            Build My Android App <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Service 3: API & UI/UX Integration -->
+        <div class="glass-card p-8 rounded-3xl border-slate-800 hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-2 group">
+          <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center text-2xl mb-6 group-hover:bg-indigo-500 group-hover:text-white transition-all">
+            <i class="fa-solid fa-network-wired"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">API & UI/UX Integration</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            Connecting mobile apps and frontend experiences to robust REST APIs, third-party payment gateways, and databases.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300 mb-6">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> RESTful API Architecture & Authentication (JWT)</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Payment Gateway & SMS OTP Integration</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Figma to High-Fidelity Pixel-Perfect Code</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Bug fixing, Performance Audits & Refactoring</li>
+          </ul>
+          <a href="#contact" class="text-indigo-400 font-semibold text-xs inline-flex items-center gap-2 hover:gap-3 transition-all">
+            Integrate APIs <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills & Tech Stack Section -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-semibold tracking-wider uppercase">
+          Core Competencies
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Skills & <span class="text-gradient">Technology Stack</span>
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Tools, frameworks, and languages I use to produce dependable software daily.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <!-- Skill 1 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-cyan-400/50 transition-all hover:scale-105">
+          <i class="fa-brands fa-react text-cyan-400 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">React.js</span>
+          <span class="text-[11px] text-slate-400">Frontend UI</span>
+        </div>
+        <!-- Skill 2 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-emerald-400/50 transition-all hover:scale-105">
+          <i class="fa-brands fa-android text-emerald-400 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">Android SDK</span>
+          <span class="text-[11px] text-slate-400">Kotlin & Java</span>
+        </div>
+        <!-- Skill 3 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-amber-400/50 transition-all hover:scale-105">
+          <i class="fa-brands fa-js text-yellow-400 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">JavaScript ES6+</span>
+          <span class="text-[11px] text-slate-400">Modern Scripting</span>
+        </div>
+        <!-- Skill 4 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-orange-400/50 transition-all hover:scale-105">
+          <i class="fa-brands fa-html5 text-orange-500 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">HTML5 & CSS3</span>
+          <span class="text-[11px] text-slate-400">Responsive UI</span>
+        </div>
+        <!-- Skill 5 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-cyan-400/50 transition-all hover:scale-105">
+          <i class="fa-solid fa-wind text-sky-400 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">Tailwind CSS</span>
+          <span class="text-[11px] text-slate-400">Utility First</span>
+        </div>
+        <!-- Skill 6 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-green-400/50 transition-all hover:scale-105">
+          <i class="fa-brands fa-node text-green-500 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">Node.js</span>
+          <span class="text-[11px] text-slate-400">Backend APIs</span>
+        </div>
+        <!-- Skill 7 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-indigo-400/50 transition-all hover:scale-105">
+          <i class="fa-solid fa-database text-indigo-400 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">SQL & MongoDB</span>
+          <span class="text-[11px] text-slate-400">Database Storage</span>
+        </div>
+        <!-- Skill 8 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-rose-400/50 transition-all hover:scale-105">
+          <i class="fa-brands fa-git-alt text-rose-500 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">Git & GitHub</span>
+          <span class="text-[11px] text-slate-400">Version Control</span>
+        </div>
+        <!-- Skill 9 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-blue-400/50 transition-all hover:scale-105">
+          <i class="fa-solid fa-cloud-arrow-up text-blue-400 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">RESTful APIs</span>
+          <span class="text-[11px] text-slate-400">Integration & JSON</span>
+        </div>
+        <!-- Skill 10 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-yellow-400/50 transition-all hover:scale-105">
+          <i class="fa-brands fa-google-play text-yellow-300 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">Play Console</span>
+          <span class="text-[11px] text-slate-400">App Release</span>
+        </div>
+        <!-- Skill 11 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-fuchsia-400/50 transition-all hover:scale-105">
+          <i class="fa-brands fa-figma text-pink-400 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">Figma & UI</span>
+          <span class="text-[11px] text-slate-400">Wireframes & Prototyping</span>
+        </div>
+        <!-- Skill 12 -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center text-center hover:border-teal-400/50 transition-all hover:scale-105">
+          <i class="fa-solid fa-shield-halved text-teal-400 text-3xl mb-2"></i>
+          <span class="font-semibold text-sm text-white">Performance</span>
+          <span class="text-[11px] text-slate-400">Speed & Security</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects / Showcase Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-wider uppercase mb-2">
+            Selected Works
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+            Recent Web & <span class="text-gradient">Mobile Projects</span>
+          </h2>
+        </div>
+        <!-- Project Filter Buttons -->
+        <div class="flex items-center gap-2 p-1.5 rounded-xl bg-slate-900/80 border border-slate-800 self-start md:self-auto">
+          <button onclick="filterProjects('all')" id="filter-all" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-cyan-500 text-white">All</button>
+          <button onclick="filterProjects('web')" id="filter-web" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition text-slate-400 hover:text-white">Web Apps</button>
+          <button onclick="filterProjects('android')" id="filter-android" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition text-slate-400 hover:text-white">Android</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsContainer">
+        <!-- Project 1 (Web) -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden border-slate-800 hover:border-cyan-500/40 transition group" data-category="web">
+          <div class="h-48 bg-gradient-to-tr from-slate-900 to-indigo-950 flex items-center justify-center p-6 relative border-b border-slate-800">
+            <i class="fa-solid fa-laptop-code text-5xl text-cyan-400/80 group-hover:scale-110 transition-transform"></i>
+            <span class="absolute top-4 right-4 bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
+              Web Application
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg text-white mb-2 group-hover:text-cyan-400 transition-colors">E-Commerce Merchant Dashboard</h3>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Real-time sales tracking, inventory management, dynamic invoicing, and dark mode interface built for businesses.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">React</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Tailwind</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">REST API</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-medium">
+              <a href="#contact" class="text-cyan-400 hover:underline inline-flex items-center gap-1">Inquire Case Study <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 (Android) -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden border-slate-800 hover:border-emerald-500/40 transition group" data-category="android">
+          <div class="h-48 bg-gradient-to-tr from-slate-900 to-emerald-950 flex items-center justify-center p-6 relative border-b border-slate-800">
+            <i class="fa-brands fa-android text-5xl text-emerald-400/80 group-hover:scale-110 transition-transform"></i>
+            <span class="absolute top-4 right-4 bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
+              Android App
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg text-white mb-2 group-hover:text-emerald-400 transition-colors">FitPulse Daily Tracker</h3>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Native Android fitness application with offline SQLite/Room caching, step sensor analytics, and personalized workout logs.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Kotlin</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Room DB</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Material 3</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-medium">
+              <a href="#contact" class="text-emerald-400 hover:underline inline-flex items-center gap-1">Explore Architecture <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 (Web) -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden border-slate-800 hover:border-cyan-500/40 transition group" data-category="web">
+          <div class="h-48 bg-gradient-to-tr from-slate-900 to-sky-950 flex items-center justify-center p-6 relative border-b border-slate-800">
+            <i class="fa-solid fa-chart-line text-5xl text-sky-400/80 group-hover:scale-110 transition-transform"></i>
+            <span class="absolute top-4 right-4 bg-sky-950/80 border border-sky-500/30 text-sky-300 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
+              Web & Landing Page
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg text-white mb-2 group-hover:text-cyan-400 transition-colors">SaaS High-Converting Portal</h3>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Modern SaaS landing page built for maximum conversion rates, automated email capture, and sub-second load times.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">JavaScript</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Tailwind</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">SEO Ready</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-medium">
+              <a href="#contact" class="text-cyan-400 hover:underline inline-flex items-center gap-1">View Project <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 (Android) -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden border-slate-800 hover:border-emerald-500/40 transition group" data-category="android">
+          <div class="h-48 bg-gradient-to-tr from-slate-900 to-teal-950 flex items-center justify-center p-6 relative border-b border-slate-800">
+            <i class="fa-solid fa-bell text-5xl text-teal-400/80 group-hover:scale-110 transition-transform"></i>
+            <span class="absolute top-4 right-4 bg-teal-950/80 border border-teal-500/30 text-teal-300 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
+              Android App
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg text-white mb-2 group-hover:text-emerald-400 transition-colors">QuickAlert Notification Engine</h3>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Android utility app with background work managers, FCM push alerts, and lightweight local memory footprint.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Java/Kotlin</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Firebase FCM</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">WorkManager</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-medium">
+              <a href="#contact" class="text-emerald-400 hover:underline inline-flex items-center gap-1">Check Details <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 (Web) -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden border-slate-800 hover:border-cyan-500/40 transition group" data-category="web">
+          <div class="h-48 bg-gradient-to-tr from-slate-900 to-purple-950 flex items-center justify-center p-6 relative border-b border-slate-800">
+            <i class="fa-solid fa-building-columns text-5xl text-purple-400/80 group-hover:scale-110 transition-transform"></i>
+            <span class="absolute top-4 right-4 bg-purple-950/80 border border-purple-500/30 text-purple-300 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
+              Corporate Web
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg text-white mb-2 group-hover:text-cyan-400 transition-colors">FinTech Micro-Services Portal</h3>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Secure financial web interface with multi-tier access control, encrypted session authentication, and data visualizers.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">React</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Node.js</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">JWT Auth</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-medium">
+              <a href="#contact" class="text-cyan-400 hover:underline inline-flex items-center gap-1">Review Specs <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 (Android) -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden border-slate-800 hover:border-emerald-500/40 transition group" data-category="android">
+          <div class="h-48 bg-gradient-to-tr from-slate-900 to-indigo-950 flex items-center justify-center p-6 relative border-b border-slate-800">
+            <i class="fa-solid fa-bag-shopping text-5xl text-indigo-400/80 group-hover:scale-110 transition-transform"></i>
+            <span class="absolute top-4 right-4 bg-indigo-950/80 border border-indigo-500/30 text-indigo-300 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
+              Android App
+            </span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg text-white mb-2 group-hover:text-emerald-400 transition-colors">Retail Express Mobile Order</h3>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Customer mobile app with live catalog search, order tracking, Razorpay payment gateway integration, and push status.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Android Studio</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Retrofit</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Gateway API</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-medium">
+              <a href="#contact" class="text-emerald-400 hover:underline inline-flex items-center gap-1">Live Demo Request <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-semibold tracking-wider uppercase">
+          Start A Conversation
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Let’s Build Something <span class="text-gradient">Extraordinary</span>
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Reach out directly via Call, Email, or WhatsApp. I usually reply within a few hours.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Direct Quick Connect Cards -->
+        <div class="lg:col-span-5 space-y-4">
+          <!-- Call Card -->
+          <a href="tel:+918295573062" class="glass-card p-6 rounded-2xl border-slate-800 hover:border-cyan-500/50 flex items-center gap-4 transition group">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl group-hover:bg-cyan-500 group-hover:text-white transition">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-xs text-slate-400 font-medium">Direct Phone / Call</p>
+              <p class="text-white font-bold text-base sm:text-lg">+91 8295573062</p>
+            </div>
+            <span class="text-cyan-400 text-xs font-semibold flex items-center gap-1">
+              Call Now <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </span>
+          </a>
+
+          <!-- Email Card -->
+          <a href="mailto:gulshanr7@gmail.com" class="glass-card p-6 rounded-2xl border-slate-800 hover:border-indigo-500/50 flex items-center gap-4 transition group">
+            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl group-hover:bg-indigo-500 group-hover:text-white transition">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs text-slate-400 font-medium">Official Email</p>
+              <p class="text-white font-bold text-sm sm:text-base truncate">gulshanr7@gmail.com</p>
+            </div>
+            <span class="text-indigo-400 text-xs font-semibold flex items-center gap-1">
+              Email <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </span>
+          </a>
+
+          <!-- WhatsApp Card -->
+          <a href="https://wa.me/918295573062?text=Hello%20Gulshan,%20I%20would%20like%20to%20discuss%20a%20project!" target="_blank" class="glass-card p-6 rounded-2xl border-slate-800 hover:border-emerald-500/50 flex items-center gap-4 transition group">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl group-hover:bg-emerald-500 group-hover:text-white transition">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-xs text-slate-400 font-medium">Instant Chat</p>
+              <p class="text-white font-bold text-base sm:text-lg">WhatsApp Direct</p>
+            </div>
+            <span class="text-emerald-400 text-xs font-semibold flex items-center gap-1">
+              Chat <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </span>
+          </a>
+
+          <!-- Availability Card -->
+          <div class="glass-card p-6 rounded-2xl border-slate-800">
+            <div class="flex items-center gap-3">
+              <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+              <h4 class="text-sm font-bold text-white">Project Availability</h4>
+            </div>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Accepting custom website orders, Android applications, bug fixing contracts, and technical consultations.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="glass-card p-8 rounded-3xl border-slate-800">
+            <h3 class="text-xl font-bold text-white mb-2">Send a Direct Message</h3>
+            <p class="text-xs text-slate-400 mb-6">Fill in the form below and I will get back to you promptly.</p>
+
+            <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1.5" for="senderName">Your Name *</label>
+                  <input type="text" id="senderName" required placeholder="John Doe" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition">
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1.5" for="senderEmail">Your Email *</label>
+                  <input type="email" id="senderEmail" required placeholder="john@example.com" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1.5" for="senderPhone">Phone / WhatsApp (Optional)</label>
+                  <input type="tel" id="senderPhone" placeholder="+91 ..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition">
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1.5" for="projectType">Service Needed</label>
+                  <select id="projectType" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition">
+                    <option value="Website Development">Website Development</option>
+                    <option value="Android App Development">Android App Development</option>
+                    <option value="Full-Stack Web & Mobile">Full-Stack (Web + Mobile)</option>
+                    <option value="UI/UX & Bug Fixing">UI/UX & Bug Fixing</option>
+                    <option value="Other Consultation">Other Consultation</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1.5" for="senderMessage">Project Details / Message *</label>
+                <textarea id="senderMessage" required rows="4" placeholder="Briefly describe what you'd like to build..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition"></textarea>
+              </div>
+
+              <button type="submit" id="submitBtn" class="w-full btn-gradient text-white font-semibold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 text-sm shadow-lg shadow-indigo-500/20">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Submission Feedback Modal -->
+  <div id="feedbackModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 hidden">
+    <div class="glass-card max-w-md w-full p-6 sm:p-8 rounded-3xl border border-slate-700 text-center space-y-4">
+      <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-3xl mx-auto">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="text-xl font-bold text-white">Message Prepared!</h3>
+      <p id="modalFeedbackText" class="text-xs text-slate-300 leading-relaxed">
+        Thank you for reaching out. Your message has been prepared for Gulshan Rana.
+      </p>
+      <div class="pt-2 flex flex-col sm:flex-row gap-3">
+        <button onclick="closeModal()" class="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold transition">
+          Close
+        </button>
+        <a id="emailClientFallback" href="mailto:gulshanr7@gmail.com" class="w-full py-2.5 px-4 rounded-xl btn-gradient text-white text-xs font-semibold flex items-center justify-center gap-2">
+          <span>Open Email App</span>
+          <i class="fa-solid fa-envelope text-xs"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-brand-darker relative z-10 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center font-display font-bold text-white text-sm">
+          GR
+        </div>
+        <span class="font-display font-bold text-slate-200">Gulshan Rana</span>
+        <span class="text-slate-600">|</span>
+        <span class="text-xs text-slate-400">Web & Android Developer</span>
+      </div>
+
+      <div class="flex items-center gap-6 text-sm text-slate-400">
+        <a href="tel:+918295573062" class="hover:text-cyan-400 transition-colors" title="Call"><i class="fa-solid fa-phone"></i></a>
+        <a href="mailto:gulshanr7@gmail.com" class="hover:text-cyan-400 transition-colors" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://wa.me/918295573062" target="_blank" class="hover:text-emerald-400 transition-colors" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://github.com" target="_blank" class="hover:text-white transition-colors" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="hover:text-sky-400 transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs text-slate-500">
+        <p>&copy; <span id="currentYear"></span> Gulshan Rana. All rights reserved.</p>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition" title="Back to top">
+          <i class="fa-solid fa-chevron-up text-xs"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    // Set dynamic current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Mobile Hamburger Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-xmark');
+      } else {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+      }
+    });
+
+    // Close mobile menu when clicking any navigation link
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+      });
+    });
+
+    // Project Filtering Function
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // Update active button styles
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-cyan-500', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+
+      const activeBtn = document.getElementById('filter-' + category);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-cyan-500', 'text-white');
+        activeBtn.classList.remove('text-slate-400');
+      }
+
+      // Filter cards
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Interactive Contact Form Submission Handler
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('senderName').value.trim();
+      const email = document.getElementById('senderEmail').value.trim();
+      const phone = document.getElementById('senderPhone').value.trim();
+      const service = document.getElementById('projectType').value;
+      const message = document.getElementById('senderMessage').value.trim();
+
+      const subject = encodeURIComponent(`Project Inquiry: ${service} from ${name}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nService: ${service}\n\nProject Overview:\n${message}`
+      );
+
+      const mailtoUrl = `mailto:gulshanr7@gmail.com?subject=${subject}&body=${body}`;
+
+      // Update modal text and fallback link
+      const fallbackBtn = document.getElementById('emailClientFallback');
+      fallbackBtn.href = mailtoUrl;
+
+      document.getElementById('modalFeedbackText').textContent =
+        `Thank you ${name}! Your inquiry for "${service}" has been prepared. Click below to launch your email client and send it directly to gulshanr7@gmail.com or connect instantly on WhatsApp.`;
+
+      // Open Modal
+      document.getElementById('feedbackModal').classList.remove('hidden');
+
+      // Reset form
+      document.getElementById('contactForm').reset();
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
